@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-
+import React, { Component } from 'react';
 
 // class Person extends Component {
 //   render() {
@@ -9,9 +8,13 @@ import React, {Component} from 'react';
 //   }
 // }
 
-
 const person = (props) => {
-  return <p>I'm {props.name} and I am {props.age} years old</p>;
+  return (
+    <div>
+      <p>I'm {props.name} and I am {props.age} years old. {6 + 3}</p> 
+      <p>{props.children}</p>
+    </div>
+  );
 }
 
-export default person; 
+export default person;
