@@ -24,7 +24,6 @@ class App extends Component {
   }
 
   increaseAllAgesHandler = () => {
-    console.log("ih");
     this.setState(Object.assign(
       this.state,
       {
@@ -37,16 +36,43 @@ class App extends Component {
       }
     ));
   }
+
+  increaseAgeHandler = (person) => {
+    this.setState(Object.assign(
+      this.state,
+      {
+        persons: this.state.persons.map(p => (
+          p.name === person.name ?
+          {
+            ...p,
+            age: p.age + 1
+          }
+          :
+          p
+        ))
+      }
+    ));
+  }
+
   render() {
     return (
       <div className="App">
-        <button onClick={this.increaseAllAgesHandler}></button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}>
+        <button onClick={this.increaseAllAgesHandler}>Increase all ages</button>
+        <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+          increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[0])}>
         </Person>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+          increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[1])}>
           {this.state.persons[1].extra}
         </Person>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>
+        <Person
+          name={this.state.persons[2].name}
+          age={this.state.persons[2].age}
+          increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[2])}>
         </Person>
       </div>
     );
