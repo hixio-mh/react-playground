@@ -88,6 +88,29 @@ class App extends Component {
 
   render() {
 
+    const persons = (this.state.showPersons) ?
+      <div>
+        <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+          increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[0])}>
+        </Person>
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+          increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[1])}>
+          {this.state.persons[1].extra}
+        </Person>
+        <Person
+          name={this.state.persons[2].name}
+          age={this.state.persons[2].age}
+          increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[2])}
+          changeNameHandler={this.changeNameHandler}>
+        </Person>
+      </div>
+      :
+      null;
+
     return (
       <div className="App">
         <button onClick={this.increaseAllAgesHandler}>Increase all ages</button>
@@ -99,31 +122,7 @@ class App extends Component {
               <span>Show persons</span>
           }
         </button>
-
-        {
-          this.state.showPersons ?
-            (<div>
-              <Person
-                name={this.state.persons[0].name}
-                age={this.state.persons[0].age}
-                increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[0])}>
-              </Person>
-              <Person
-                name={this.state.persons[1].name}
-                age={this.state.persons[1].age}
-                increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[1])}>
-                {this.state.persons[1].extra}
-              </Person>
-              <Person
-                name={this.state.persons[2].name}
-                age={this.state.persons[2].age}
-                increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[2])}
-                changeNameHandler={this.changeNameHandler}>
-              </Person>
-            </div>)
-            :
-            null
-        }
+        {persons}
       </div>
     );
   }
