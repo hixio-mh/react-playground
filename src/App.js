@@ -20,7 +20,8 @@ class App extends Component {
         age: 27,
         extra: null
       }
-    ]
+    ],
+    showPersons: true
   }
 
   increaseAllAgesHandler = () => {
@@ -79,28 +80,50 @@ class App extends Component {
     ));
   }
 
+  togglePersonsHandler = () => {
+    this.setState({
+      showPersons: !this.state.showPersons
+    });
+  }
+
   render() {
+
     return (
       <div className="App">
         <button onClick={this.increaseAllAgesHandler}>Increase all ages</button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[0])}>
-        </Person>
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[1])}>
-          {this.state.persons[1].extra}
-        </Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-          increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[2])}
-          changeNameHandler={this.changeNameHandler}
-        >
-        </Person>
+        <button onClick={this.togglePersonsHandler}>
+          {
+            this.state.showPersons ?
+              <span>Hide persons</span>
+              :
+              <span>Show persons</span>
+          }
+        </button>
+
+        {
+          this.state.showPersons ?
+            (<div>
+              <Person
+                name={this.state.persons[0].name}
+                age={this.state.persons[0].age}
+                increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[0])}>
+              </Person>
+              <Person
+                name={this.state.persons[1].name}
+                age={this.state.persons[1].age}
+                increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[1])}>
+                {this.state.persons[1].extra}
+              </Person>
+              <Person
+                name={this.state.persons[2].name}
+                age={this.state.persons[2].age}
+                increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[2])}
+                changeNameHandler={this.changeNameHandler}>
+              </Person>
+            </div>)
+            :
+            null
+        }
       </div>
     );
   }

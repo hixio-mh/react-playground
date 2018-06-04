@@ -1,6 +1,6 @@
 
 body {
-  --background-color-dark: rgb(0, 0, 0);
+  --background-color-dark: rgb(102, 102, 102);
   margin: 0;
   padding: 0;
   background: var(--background-color-dark);

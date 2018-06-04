@@ -2,8 +2,12 @@ import React from 'react';
 import './Person.css';
 
 const person = (props) => {
+  const style = {
+    backgroundColor: "rgb(255, 255, 255)"
+  };
+
   return (
-    <div className="Person">
+    <div style={style}>
       <h1>{props.name} ({props.age})</h1>
       <div>{props.children}</div> 
       <button onClick={props.increaseAgeHandler}>Increase age</button>
