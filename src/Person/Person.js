@@ -1,5 +1,4 @@
 import React from 'react';
-import './Person.css';
 
 const person = (props) => {
   const style = {
@@ -11,6 +10,7 @@ const person = (props) => {
       <h1>{props.name} ({props.age})</h1>
       <div>{props.children}</div> 
       <button onClick={props.increaseAgeHandler}>Increase age</button>
+      <button onClick={props.deletePersonHandler}>Delete me</button>
       <input type="text" name="" onChange={props.changeNameHandler} defaultValue={props.name}/>
     </div>
   )
