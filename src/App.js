@@ -6,27 +6,29 @@ class App extends Component {
   state = {
     persons: [
       {
+        id: 9,
         name: "Scar",
         age: 30,
-        extra: null
+        extra: null,
       },
       {
+        id: 1,
         name: "Jo",
         age: 23,
-        extra: "My hobbies: football"
+        extra: "My hobbies: football",
       },
       {
+        id: 3,
         name: "Maud",
         age: 27,
-        extra: null
+        extra: null,
       }
     ],
     showPersons: true
   }
 
   increaseAllAgesHandler = () => {
-    this.setState(Object.assign(
-      this.state,
+    this.setState(
       {
         persons: this.state.persons.map(p => (
           {
@@ -35,49 +37,39 @@ class App extends Component {
           }
         ))
       }
-    ));
+    );
   }
 
   increaseAgeHandler = (person) => {
-    this.setState(Object.assign(
-      this.state,
-      {
-        persons: this.state.persons.map(p => (
-          p.name === person.name ?
-            {
-              ...p,
-              age: p.age + 1
-            }
-            :
-            p
-        ))
-      }
-    ));
+    this.setState({
+      persons: this.state.persons.map(p => (
+        p.name === person.name ?
+          {
+            ...p,
+            age: p.age + 1
+          }
+          :
+          p
+      ))
+    }
+    );
   }
 
-  changeNameHandler = (event) => {
-    this.setState(Object.assign(
-      this.state,
-      {
-        persons: [
+  changeNameHandler = (id, evt) => {
+    const newName = evt.target.value;
+    this.setState({
+      persons: [...this.state.persons].map(p => {
+        return (
+          p.id === id? 
           {
-            name: "Scar",
-            age: 30,
-            extra: null
-          },
-          {
-            name: "Jo",
-            age: 23,
-            extra: "My hobbies: football"
-          },
-          {
-            name: event.target.value,
-            age: 27,
-            extra: null
-          },
-        ]
-      }
-    ));
+            ...p,
+            name: newName
+          }
+          :
+          p
+        );
+      })
+    });
   }
 
   togglePersonsHandler = () => {
@@ -86,30 +78,31 @@ class App extends Component {
     });
   }
 
+  deletePersonHandler = (personIndex) => {
+    const persons = [...this.state.persons];
+    persons.splice(personIndex, 1);
+    this.setState({
+      persons: persons
+    });
+  }
+
   render() {
 
-    const persons = (this.state.showPersons) ?
-      <div>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[0])}>
-        </Person>
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[1])}>
-          {this.state.persons[1].extra}
-        </Person>
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-          increaseAgeHandler={this.increaseAgeHandler.bind(this, this.state.persons[2])}
-          changeNameHandler={this.changeNameHandler}>
-        </Person>
-      </div>
-      :
-      null;
+    const persons =
+      (this.state.showPersons) ?
+        this.state.persons.map((p, index) => {
+          return (
+            <Person
+              key={p.id}
+              name={p.name}
+              age={p.age}
+              increaseAgeHandler={this.increaseAgeHandler.bind(this, p)}
+              changeNameHandler={this.changeNameHandler.bind(this, p.id)}
+              deletePersonHandler={this.deletePersonHandler.bind(this, index)}
+            />)
+        })
+        :
+        null;
 
     return (
       <div className="App">
