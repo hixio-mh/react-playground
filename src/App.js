@@ -25,7 +25,7 @@ class App extends Component {
       }
     ],
     showPersons: true
-  }
+  };
 
   increaseAllAgesHandler = () => {
     this.setState(
@@ -60,13 +60,13 @@ class App extends Component {
     this.setState({
       persons: [...this.state.persons].map(p => {
         return (
-          p.id === id? 
-          {
-            ...p,
-            name: newName
-          }
-          :
-          p
+          p.id === id ?
+            {
+              ...p,
+              name: newName
+            }
+            :
+            p
         );
       })
     });
@@ -120,16 +120,19 @@ class App extends Component {
         :
         "Show persons";
 
+
+    const personsCountClass = 
+        this.state.persons.length > 2 ?
+        "persons-count-large"
+        :
+        "persons-count-small";
+
     return (
       <div className="App">
+        <p className={personsCountClass}>{this.state.persons.length} persons</p>
         <button onClick={this.increaseAllAgesHandler}>Increase all ages</button>
         <button style={style} onClick={this.togglePersonsHandler}>
-          {
-            this.state.showPersons ?
-              <span>Hide persons</span>
-              :
-              <span>Show persons</span>
-          }
+          {togglePersonsButtonText}
         </button>
         {persons}
       </div>

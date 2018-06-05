@@ -11,6 +11,14 @@ body {
   background: var(--background-color-dark);
 }
 
+.persons-count-large {
+  background: none;
+}
+
+.persons-count-small {
+  background: red;
+}
+
 button {
   margin: 4rem;
   background: rgb(44, 44, 44);
