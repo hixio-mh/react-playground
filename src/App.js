@@ -99,7 +99,7 @@ class App extends Component {
         };
 
     const persons =
-      (this.state.showPersons) ?
+      this.state.showPersons ?
         this.state.persons.map((p, index) => {
           return (
             <Person
@@ -114,10 +114,16 @@ class App extends Component {
         :
         null;
 
+    const togglePersonsButtonText =
+      this.state.showPersons ?
+        "Hide persons"
+        :
+        "Show persons";
+
     return (
       <div className="App">
         <button onClick={this.increaseAllAgesHandler}>Increase all ages</button>
-        <button onClick={this.togglePersonsHandler}>
+        <button style={style} onClick={this.togglePersonsHandler}>
           {
             this.state.showPersons ?
               <span>Hide persons</span>
