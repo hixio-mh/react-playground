@@ -88,6 +88,16 @@ class App extends Component {
 
   render() {
 
+    const style =
+      this.state.showPersons ?
+        {
+          background: "red"
+        }
+        :
+        {
+          background: "green"
+        };
+
     const persons =
       (this.state.showPersons) ?
         this.state.persons.map((p, index) => {
