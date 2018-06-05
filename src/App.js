@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Person from './Person/Person';
+import Radium from 'radium';
 import './App.css';
 
 class App extends Component {
@@ -91,11 +92,17 @@ class App extends Component {
     const style =
       this.state.showPersons ?
         {
-          background: "red"
+          background: "red",
+          ":hover": {
+            background: "crimson"
+          }
         }
         :
         {
-          background: "green"
+          background: "green",
+          ":hover": {
+            background: "darkgreen"
+          }
         };
 
     const persons =
@@ -140,4 +147,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
