@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Person from './Person/Person';
-import Radium, { StyleRoot } from 'radium';
 import './App.css';
 
 class App extends Component {
@@ -103,20 +102,11 @@ class App extends Component {
     const style =
       this.state.showPersons ?
         {
-          background: "red",
-          ":hover": {
-            background: "crimson"
-          },
-          "@media screen and (min-width: 20px)": {
-            background: "orange"
-          }
+          background: "red"
         }
         :
         {
           background: "green",
-          ":hover": {
-            background: "darkgreen"
-          }
         };
 
     const persons =
@@ -150,17 +140,15 @@ class App extends Component {
 
     return (
       <div className="App">
-        <StyleRoot>
-          <p className={personsCountClass}>{this.state.persons.length} persons</p>
-          <button onClick={this.increaseAllAgesHandler}>Increase all ages</button>
-          <button style={style} onClick={this.togglePersonsHandler}>
-            {togglePersonsButtonText}
-          </button>
-          {persons}
-        </StyleRoot>
+        <p className={personsCountClass}>{this.state.persons.length} persons</p>
+        <button onClick={this.increaseAllAgesHandler}>Increase all ages</button>
+        <button style={style} onClick={this.togglePersonsHandler}>
+          {togglePersonsButtonText}
+        </button>
+        {persons}
       </div>
     );
   }
 }
 
-export default Radium(App);
+export default App;
