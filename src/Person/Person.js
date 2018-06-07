@@ -5,6 +5,10 @@ const person = (props) => {
     backgroundColor: "rgb(255, 255, 255)"
   };
 
+  // if (Math.random() > 0.5) {
+  //   throw new Error("Something went wrong");
+  // }
+
   return (
     <div style={style}>
       <h1>{props.name} ({props.age})</h1>

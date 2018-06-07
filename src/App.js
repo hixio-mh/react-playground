@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Person from './Person/Person';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 import './App.css';
 
 class App extends Component {
@@ -27,6 +27,17 @@ class App extends Component {
     ],
     showPersons: true
   };
+
+  // Error catch lifecycle method
+
+  componentDidCatch(error, info) {
+    // Display fallback UI
+    this.setState({ persons: [] });
+    // You can also log the error to an error reporting service
+    console.log("error");
+  }
+
+  // Handlers
 
   increaseAllAgesHandler = () => {
     this.setState(
@@ -95,6 +106,9 @@ class App extends Component {
           background: "red",
           ":hover": {
             background: "crimson"
+          },
+          "@media screen and (min-width: 20px)": {
+            background: "orange"
           }
         }
         :
@@ -128,20 +142,22 @@ class App extends Component {
         "Show persons";
 
 
-    const personsCountClass = 
-        this.state.persons.length > 2 ?
+    const personsCountClass =
+      this.state.persons.length > 2 ?
         "persons-count-large"
         :
         "persons-count-small";
 
     return (
       <div className="App">
-        <p className={personsCountClass}>{this.state.persons.length} persons</p>
-        <button onClick={this.increaseAllAgesHandler}>Increase all ages</button>
-        <button style={style} onClick={this.togglePersonsHandler}>
-          {togglePersonsButtonText}
-        </button>
-        {persons}
+        <StyleRoot>
+          <p className={personsCountClass}>{this.state.persons.length} persons</p>
+          <button onClick={this.increaseAllAgesHandler}>Increase all ages</button>
+          <button style={style} onClick={this.togglePersonsHandler}>
+            {togglePersonsButtonText}
+          </button>
+          {persons}
+        </StyleRoot>
       </div>
     );
   }
