@@ -5,3 +5,34 @@
 .personscountsmall {
   background: red;
 }
+
+.Header {
+  --red: red;
+  --red-dark: rgb(155, 0, 0);
+  --green: green;
+  --green-dark: rgb(0, 95, 24);
+}
+
+.Header button.critical {
+  background: var(--red);
+  transition: background 0.2s linear;
+}
+
+.Header button.critical:hover {
+  background: var(--red-dark);
+}
+
+.Header button.ok {
+  background: var(--green);
+  transition: background 0.2s linear;
+}
+
+.Header button.ok:hover {
+  background: var(--green-dark);
+}
+
+@media screen and (min-width:10px) {
+  .Header button.ok:hover {
+    background: purple;
+  }
+}

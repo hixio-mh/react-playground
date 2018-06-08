@@ -14,17 +14,14 @@ const header = (props) => {
       :
       "Show persons";
 
-  // const togglePersonsButtonClass =
-  //   props.showPersons ?
-  //     classes.critical
-  //     :
-  //     classes.ok;
-
-
-  // className={togglePersonsButtonClass}
+  const togglePersonsButtonClass =
+    props.showPersons ?
+      classes.critical
+      :
+      classes.ok;
 
   return (
-    <div>
+    <div className={classes.Header}>
       <p className={personsCountClass}>
         {props.personsCount} persons
       </p>
@@ -34,7 +31,7 @@ const header = (props) => {
       </button>
       <button
         onClick={props.togglePersonsHandler}
-      >
+        className={togglePersonsButtonClass}>
         {togglePersonsButtonText}
       </button>
     </div>

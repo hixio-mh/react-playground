@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Person from '../components/Persons/Person/Person';
+import Persons from '../components/Persons/Persons';
 import Header from '../components/Header/Header';
 import classes from './App.css';
 
@@ -28,15 +28,6 @@ class App extends Component {
     showPersons: true
   };
 
-  // Error catch lifecycle method
-
-  componentDidCatch(error, info) {
-    // Display fallback UI
-    this.setState({ persons: [] });
-    // You can also log the error to an error reporting service
-    console.log("error");
-  }
-
   // Handlers
 
   increaseAllAgesHandler = () => {
@@ -63,8 +54,7 @@ class App extends Component {
           :
           p
       ))
-    }
-    );
+    });
   }
 
   changeNameHandler = (id, evt) => {
@@ -100,31 +90,11 @@ class App extends Component {
 
   render() {
 
-    // const style =
-    //   this.state.showPersons ?
-    //     {
-    //       background: "red"
-    //     }
-    //     :
-    //     {
-    //       background: "green",
-    //     };
-
     const persons =
       this.state.showPersons ?
-        this.state.persons.map((p, index) => {
-          return (
-            <Person
-              key={p.id}
-              name={p.name}
-              age={p.age}
-              increaseAgeHandler={this.increaseAgeHandler.bind(this, p)}
-              changeNameHandler={this.changeNameHandler.bind(this, p.id)}
-              deletePersonHandler={this.deletePersonHandler.bind(this, index)}
-            />)
-        })
+        this.state.persons
         :
-        null;
+        [];
 
     return (
       <div className={classes.App}>
@@ -133,9 +103,15 @@ class App extends Component {
           togglePersonsHandler={this.togglePersonsHandler}
           showPersons={this.state.showPersons}
           personsCount={this.state.persons.length}
-          >
+        >
         </Header>
-        {persons}
+        <Persons
+          persons={persons}
+          increaseAgeHandler={this.increaseAgeHandler}
+          changeNameHandler={this.changeNameHandler}
+          deletePersonHandler={this.deletePersonHandler}
+        >
+        </Persons>
       </div>
     );
   }
