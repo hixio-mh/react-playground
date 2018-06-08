@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Person from './Person/Person';
+import Person from '../components/Persons/Person/Person';
+import Header from '../components/Header/Header';
 import classes from './App.css';
 
 class App extends Component {
@@ -125,31 +126,15 @@ class App extends Component {
         :
         null;
 
-    const togglePersonsButtonText =
-      this.state.showPersons ?
-        "Hide persons"
-        :
-        "Show persons";
-
-    const togglePersonsButtonClass =
-      this.state.showPersons ?
-        classes.critical
-        :
-        classes.ok;
-
-    const personsCountClass =
-      this.state.persons.length > 2 ?
-        classes.personscountlarge
-        :
-        classes.personscountsmall;
-
     return (
       <div className={classes.App}>
-        <p className={personsCountClass}>{this.state.persons.length} persons</p>
-        <button onClick={this.increaseAllAgesHandler}>Increase all ages</button>
-        <button className={togglePersonsButtonClass} onClick={this.togglePersonsHandler}>
-          {togglePersonsButtonText}
-        </button>
+        <Header
+          increaseAllAgesHandler={this.increaseAllAgesHandler}
+          togglePersonsHandler={this.togglePersonsHandler}
+          showPersons={this.state.showPersons}
+          personsCount={this.state.persons.length}
+          >
+        </Header>
         {persons}
       </div>
     );
