@@ -1,16 +1,14 @@
-import React from 'react';
+import React from 'react'; 
+import classes from './Person.css';
 
 const person = (props) => {
-  const style = {
-    backgroundColor: "rgb(255, 255, 255)"
-  };
 
   // if (Math.random() > 0.5) {
   //   throw new Error("Something went wrong");
   // }
 
   return (
-    <div style={style}>
+    <div className={classes.bluecolored}>
       <h1>{props.name} ({props.age})</h1>
       <div>{props.children}</div> 
       <button onClick={props.increaseAgeHandler}>Increase age</button>
