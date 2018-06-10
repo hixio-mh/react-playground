@@ -2,7 +2,19 @@ import React, { Component } from 'react';
 import Person from './Person/Person';
 
 class Persons extends Component {
+
+  constructor() {
+    super();
+    console.log('%c constructing Persons', 'color: orange');
+  }
+
+  componentDidMount() {
+    console.log("%c componentDidMount Persons", 'color: orange');
+  }
+
   render() {
+    console.log("%c rendering Persons", 'color: orange');
+
     return this.props.persons.map(
       (p, index) => {
         return (

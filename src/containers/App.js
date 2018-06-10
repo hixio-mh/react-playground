@@ -4,6 +4,7 @@ import Header from '../components/Header/Header';
 import classes from './App.css';
 
 class App extends Component {
+
   state = {
     persons: [
       {
@@ -25,8 +26,31 @@ class App extends Component {
         extra: null,
       }
     ],
-    showPersons: true
+    showPersons: false
   };
+
+  constructor() {
+    super();
+    console.log('%c constructing App', 'color: purple');
+    console.log(this.state);
+  }
+
+  componentDidMount() {
+    console.log("%c componentDidMount App", 'color: purple');
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("%c shouldComponentUpdate App", 'color: purple');
+    return true;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log("%c componentWillUpdate App", 'color: purple');
+  }
+
+  componentDidUpdate() {
+    console.log("%c componentDidUpdate App", 'color: purple');
+  }
 
   // Handlers
 
@@ -89,6 +113,8 @@ class App extends Component {
   }
 
   render() {
+
+    console.log("%c rendering App", 'color: purple');
 
     const persons =
       this.state.showPersons ?
