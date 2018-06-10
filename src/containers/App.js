@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Persons from '../components/Persons/Persons';
 import Header from '../components/Header/Header';
-import classes from './App.css';
+import classes from './App.css'; 
+import WithClass from '../hoc/WithClass';
 
 class App extends Component {
   state = {
@@ -97,7 +98,7 @@ class App extends Component {
         [];
 
     return (
-      <div className={classes.App}>
+      <WithClass mainClass={classes.App}>
         <Header
           increaseAllAgesHandler={this.increaseAllAgesHandler}
           togglePersonsHandler={this.togglePersonsHandler}
@@ -112,7 +113,7 @@ class App extends Component {
           deletePersonHandler={this.deletePersonHandler}
         >
         </Persons>
-      </div>
+      </WithClass>
     );
   }
 }
