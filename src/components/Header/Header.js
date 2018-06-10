@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Header.css';
+import Aux from '../../hoc/Aux';
 
 const header = (props) => {
   const personsCountClass =
@@ -21,7 +22,7 @@ const header = (props) => {
       classes.ok;
 
   return (
-    <div className={classes.Header}>
+    <Aux>
       <p className={personsCountClass}>
         {props.personsCount} persons
       </p>
@@ -34,7 +35,7 @@ const header = (props) => {
         className={togglePersonsButtonClass}>
         {togglePersonsButtonText}
       </button>
-    </div>
+    </Aux>
   )
 }
 
