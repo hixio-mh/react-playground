@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import classes from './Header.css';
-import Aux from '../../hoc/Aux';
 
 const header = (props) => {
   const personsCountClass =
@@ -22,7 +21,7 @@ const header = (props) => {
       classes.ok;
 
   return (
-    <Aux>
+    <Fragment>
       <p className={personsCountClass}>
         {props.personsCount} persons
       </p>
@@ -35,7 +34,7 @@ const header = (props) => {
         className={togglePersonsButtonClass}>
         {togglePersonsButtonText}
       </button>
-    </Aux>
+    </Fragment>
   )
 }
 
